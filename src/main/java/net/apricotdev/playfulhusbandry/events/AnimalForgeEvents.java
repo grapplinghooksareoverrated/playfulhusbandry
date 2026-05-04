@@ -1,5 +1,6 @@
 package net.apricotdev.playfulhusbandry.events;
 
+import net.apricotdev.playfulhusbandry.LivingEntityLootIntrospectionTool;
 import net.apricotdev.playfulhusbandry.PlayfulHusbandry;
 import net.apricotdev.playfulhusbandry.genetics.AnimalGenetics;
 import net.apricotdev.playfulhusbandry.genetics.AnimalGeneticsProvider;
@@ -48,7 +49,8 @@ public class AnimalForgeEvents {
     // Used specifically to let AnimalGenetics modify drop quantities.
     @SubscribeEvent
     public static void onLivingDropsEvent(LivingDropsEvent event) {
-        event.getEntity().getCapability(AnimalGeneticsProvider.ANIMAL_GENETICS).ifPresent( animalGenetics -> {
+        var entity = event.getEntity();
+        entity.getCapability(AnimalGeneticsProvider.ANIMAL_GENETICS).ifPresent( animalGenetics -> {
 
             if (animalGenetics.shouldNotDropLoot()) {
                 event.setCanceled(true);
@@ -58,6 +60,7 @@ public class AnimalForgeEvents {
             // WARNING: This code structure means that a single drop may be offset multiple times.
             var drops = event.getDrops();
             var tagOffsets = animalGenetics.getTagOffsets();
+            ArrayList<TagKey<Item>> tagOffsetsNeglected = new ArrayList<>(tagOffsets.keySet());
             for (ItemEntity drop : drops) {
                 // Check if key matches a tag found in the offsets.
                 for (TagKey<Item> tag : tagOffsets.keySet()) {
@@ -65,6 +68,35 @@ public class AnimalForgeEvents {
                         // Apply offset
                         var offsetValue = tagOffsets.get(tag);
                         drop.getItem().setCount(drop.getItem().getCount() + offsetValue);
+                        tagOffsetsNeglected.remove(tag);
+                    }
+                }
+            }
+
+            // If offsets were applied to the animal that didn't end up being used (most likely due to RNG), we re-add them.
+            if (!tagOffsetsNeglected.isEmpty()) {
+                for (TagKey<Item> tag : tagOffsetsNeglected) {
+                    // If this offset was not beneficial, we don't intervene.
+                    var offsetMagnitude = tagOffsets.get(tag);
+                    if ( offsetMagnitude <= 0 ) {
+                        continue;
+                    }
+                    // Check if there's any loot that the animal wasn't going to drop, but should have given its heirloom.
+                    // If the loot exists, we add it.
+                    ArrayList<ItemStack> allPossibleLootForEntityGivenTag = LivingEntityLootIntrospectionTool.getDropsForTag(event.getEntity(), tag);
+                    for (ItemStack itemStack : allPossibleLootForEntityGivenTag) {
+                        // Set stack count based on offset.
+                        itemStack.setCount( offsetMagnitude );
+                        // Create new entity.
+                        ItemEntity itemEntity = new ItemEntity(
+                                entity.level,
+                                entity.getX(),
+                                entity.getY(),
+                                entity.getZ(),
+                                itemStack
+                        );
+                        // Add entity to pending drops
+                        drops.add(itemEntity);
                     }
                 }
             }

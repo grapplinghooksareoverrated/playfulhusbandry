@@ -4,8 +4,8 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.google.gson.stream.JsonReader;
 import com.mojang.logging.LogUtils;
+import net.apricotdev.playfulhusbandry.LivingEntityLootIntrospectionTool;
 import net.apricotdev.playfulhusbandry.Config;
 import net.apricotdev.playfulhusbandry.genetics.AnimalGeneticsProvider;
 import net.minecraft.ChatFormatting;
@@ -13,9 +13,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextColor;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.Resource;
-import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.tags.TagKey;
-import net.minecraft.util.GsonHelper;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
@@ -23,16 +21,11 @@ import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.slf4j.Logger;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.Reader;
-import java.util.List;
-import java.util.Map;
 
 public class AnimalHeirloom extends Item {
     public AnimalHeirloom(Properties properties) {
@@ -62,10 +55,10 @@ public class AnimalHeirloom extends Item {
                     .orElseThrow(() -> new FileNotFoundException(fileLocation.toString()));
             BufferedReader reader = resource.openAsReader();
             // Iterate through all LootPools of this Entity.
-            JsonElement fileRootElement = new JsonParser().parse(reader);
+            JsonElement fileRootElement = JsonParser.parseReader(reader);
             // Double check if the element is a JsonObject. If not, return early.
             if (!fileRootElement.isJsonObject()) {
-                LOGGER.warn("The file " + fileLocation.toString() + " couldn't be converted to a JsonObject. Maybe it's corrupted?");
+                LOGGER.warn("The file {} couldn't be converted to a JsonObject. Maybe it's corrupted?", fileLocation.toString());
                 return false;
             }
             JsonObject fileRoot = fileRootElement.getAsJsonObject();
@@ -105,7 +98,7 @@ public class AnimalHeirloom extends Item {
 
                 // Verify that the animal's loot table contains at least one item corresponding to this heirloom's tag.
                 // If "heirloom_loot_check" is set to false, this is ignored.
-                if (Config.heirloom_loot_check && !entityDropsItemOfTag(p_41400_)) {
+                if (Config.heirloom_loot_check && !LivingEntityLootIntrospectionTool.hasDropsForTag(p_41400_, tag)) {
                     p_41399_.sendSystemMessage(
                             Component.translatable("item.playfulhusbandry.heirloom.does_nothing_for_given_animal")
                                     .withStyle(ChatFormatting.ITALIC)
