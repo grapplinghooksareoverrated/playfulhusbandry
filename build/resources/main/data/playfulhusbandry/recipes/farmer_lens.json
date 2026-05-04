@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "G",
+    "L"
+  ],
+  "key": {
+    "G": {
+      "item" : "minecraft:glass"
+    },
+    "L": {
+      "item" : "minecraft:stick"
+    }
+  },
+  "result": {
+    "item" : "playfulhusbandry:farmer_lens"
+  }
+}

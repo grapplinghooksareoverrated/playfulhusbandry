@@ -1,0 +1,11 @@
+{
+  "replace" : false,
+  "values" : [
+    "minecraft:beef",
+    "minecraft:chicken",
+    "minecraft:mutton",
+    "minecraft:porkchop",
+    "minecraft:rabbit",
+    "#playfulhusbandry:integration_farmers_delight_raw_meat"
+  ]
+}

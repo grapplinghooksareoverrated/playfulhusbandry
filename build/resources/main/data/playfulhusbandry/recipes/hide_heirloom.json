@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "M"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:string"
+    },
+    "M": {
+      "tag": "playfulhusbandry:animal_hide"
+    }
+  },
+  "result": {
+    "item": "playfulhusbandry:hide_heirloom"
+  }
+}

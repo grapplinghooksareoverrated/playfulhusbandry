@@ -1,0 +1,15 @@
+{
+  "message.playfulhusbandry.give_hierloom_0" : "You gave your ",
+  "message.playfulhusbandry.give_hierloom_1" : " to the ",
+  "message.playfulhusbandry.heirlooms_applied" : " Heirloom Slots",
+  "message.playfulhusbandry.heirlooms_limit_met" : "This animal is filled to the brim with magic energy.",
+  "message.playfulhusbandry.heirlooms_exceeded_warning" : "This animal looks combustible.",
+  "message.playfulhusbandry.incest_warning" : "This animal is a product of inbreeding, so its stats might be unusual.",
+  "item.playfulhusbandry.farmer_lens" : "Farmer's Lens",
+  "message.playfulhusbandry.farmer_lens.invalid_target" : "Shouldn't you use this on an animal?",
+  "message.playfulhusbandry.farmer_lens.water_animal" : "I appreciate your enthusiasm, but I don't think this is the right kind of animal.",
+  "item.playfulhusbandry.meat_heirloom" : "Meat Heirloom",
+  "item.playfulhusbandry.hide_heirloom" : "Hide Heirloom",
+  "playfulhusbandry:raw_meat" : "Raw Meat",
+  "playfulhusbandry:animal_hide" : "Animal Hide"
+}

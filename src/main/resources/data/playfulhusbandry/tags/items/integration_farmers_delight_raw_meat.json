@@ -1,0 +1,33 @@
+{
+  "replace" : false,
+  "values" : [
+    {
+      "id" : "item.farmersdelight.minced_beef",
+      "required" : false
+    },
+    {
+      "id" : "item.farmersdelight.beef_patty",
+      "required" : false
+    },
+    {
+      "id" : "item.farmersdelight.chicken_cuts",
+      "required" : false
+    },
+    {
+      "id" : "item.farmersdelight.chicken_cuts",
+      "required" : false
+    },
+    {
+      "id" : "item.farmersdelight.raw_bacon",
+      "required" : false
+    },
+    {
+      "id" : "item.farmersdelight.mutton_chops",
+      "required" : false
+    },
+    {
+      "id" : "item.farmersdelight.ham",
+      "required" : false
+    }
+  ]
+}
