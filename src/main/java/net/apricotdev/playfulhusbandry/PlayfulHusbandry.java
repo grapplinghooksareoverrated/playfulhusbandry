@@ -46,7 +46,7 @@ public class PlayfulHusbandry
 
     public static final RegistryObject<Item> FARMER_LENS_ITEM = ITEMS.register(
             "farmer_lens",
-            () -> new FarmerLens( new Item.Properties().tab(CreativeModeTab.TAB_TOOLS) )
+            () -> new FarmerLens( new Item.Properties().tab(CreativeModeTab.TAB_TOOLS).stacksTo(1) )
     );
 
     public static final RegistryObject<Item> MEAT_HEIRLOOM_ITEM = ITEMS.register(

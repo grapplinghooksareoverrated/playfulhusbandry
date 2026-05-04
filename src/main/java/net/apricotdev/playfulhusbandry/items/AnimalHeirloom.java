@@ -147,6 +147,9 @@ public class AnimalHeirloom extends Item {
                     }
 
                 });
+
+                // Consume 
+                p_41398_.shrink(1);
                 return InteractionResult.SUCCESS;
             }
         }

@@ -2,6 +2,7 @@ package net.apricotdev.playfulhusbandry.items;
 
 import net.apricotdev.playfulhusbandry.genetics.AnimalGeneticsProvider;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.network.chat.Component;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionHand;
