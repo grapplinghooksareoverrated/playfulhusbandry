@@ -7,3 +7,5 @@ That's where Playful Husbandry comes in! This mod adds a few new items and a new
 To get the latest version, you can always visit the <a href="https://github.com/grapplinghooksareoverrated/playfulhusbandry/releases">releases page!</a> 
 ## I've never modded before, but this sounds intruiguing. How do I get started? 
 The easiest way is through <a href="https://blog.curseforge.com/how-to-install-minecraft-forge/">CurseForge</a>, but I personally use <a href="https://prismlauncher.org/">Prism Launcher</a>.
+## Is this inspired by Mewgenics?
+No, actually! I've never played that game.
