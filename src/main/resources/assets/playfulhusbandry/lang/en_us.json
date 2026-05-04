@@ -8,6 +8,7 @@
   "item.playfulhusbandry.farmer_lens" : "Farmer's Lens",
   "message.playfulhusbandry.farmer_lens.invalid_target" : "Shouldn't you use this on an animal?",
   "message.playfulhusbandry.farmer_lens.water_animal" : "I appreciate your enthusiasm, but I don't think this is the right kind of animal.",
+  "item.playfulhusbandry.heirloom.does_nothing_for_given_animal" : "This heirloom won't help that animal.",
   "item.playfulhusbandry.meat_heirloom" : "Meat Heirloom",
   "item.playfulhusbandry.hide_heirloom" : "Hide Heirloom",
   "playfulhusbandry:raw_meat" : "Raw Meat",

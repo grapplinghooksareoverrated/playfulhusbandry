@@ -29,12 +29,16 @@ public class Config
             .defineInRange("chicken_explosion_radius", 6, 0, Integer.MAX_VALUE);
 
     public static final ForgeConfigSpec.IntValue INCEST_MUTATION_MIN = BUILDER
-            .comment("Minimum mutation value for incest")
+            .comment("Minimum mutation value for inbreeding")
             .defineInRange("incest_mutation_min", -3, Integer.MIN_VALUE, 0);
 
     public static final ForgeConfigSpec.IntValue INCEST_MUTATION_MAX = BUILDER
-            .comment("Maximum mutation value for incest")
+            .comment("Maximum mutation value for inbreeding")
             .defineInRange("incest_mutation_max", 3, 0, Integer.MAX_VALUE);
+
+    public static final ForgeConfigSpec.BooleanValue HEIRLOOM_LOOT_CHECK = BUILDER
+            .comment("If set to false, heirlooms can be given to any animal even if it won't affect their drops.")
+            .define("heirloom_loot_check", true);
 
 
     static final ForgeConfigSpec SPEC = BUILDER.build();
@@ -43,6 +47,7 @@ public class Config
     public static int chicken_explosion_radius;
     public static int incest_mutation_min;
     public static int incest_mutation_max;
+    public static boolean heirloom_loot_check;
 
     @SubscribeEvent
     static void onLoad(final ModConfigEvent event)
@@ -51,5 +56,6 @@ public class Config
         chicken_explosion_radius = CHICKEN_EXPLOSION_RADIUS.get();
         incest_mutation_min = INCEST_MUTATION_MIN.get();
         incest_mutation_max = INCEST_MUTATION_MAX.get();
+        heirloom_loot_check = HEIRLOOM_LOOT_CHECK.get();
     }
 }

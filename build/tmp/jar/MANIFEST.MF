@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Specification-Title: playfulhusbandry
-Specification-Vendor: YourNameHere, OtherNameHere
-Specification-Version: 1
-Implementation-Title: PlayfulHusbandry
-Implementation-Version: 1.0.0
-Implementation-Vendor: YourNameHere, OtherNameHere
-Implementation-Timestamp: 2026-05-03T20:47:39-0600
-
